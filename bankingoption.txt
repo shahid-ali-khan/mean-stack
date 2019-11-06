@@ -1,0 +1,65 @@
+package bankingsystem;
+
+enum accountType
+{
+	SB,RD,FD;
+}
+
+abstract class bankingOption {
+
+	int accountNo;
+	String accHolder;
+	String accType;
+    Double Balance;
+	
+	
+	
+  public  Double getBalance() {
+	  return Balance;
+		
+	}
+	void Deposite(Double Amount)
+	{
+     Balance+= Amount;
+   
+	}
+	
+	 void Widthdraw(Double Amount)throws Exception
+	{
+		if(Balance<Amount)
+		throw new Exception("Amount is not Sufficient");
+		   Balance-=Amount;
+			
+}
+	
+	abstract void intrestRate();
+	
+}
+class SBaccount extends bankingOption{
+	void intrestRate() {
+		double interest = this.Balance *1/12*7.5*1/100;
+		Deposite(interest);
+	}
+	
+}
+class RDaccount extends bankingOption{
+	void intrestRate(){
+		Double interest = this.Balance *1/12*8.5*1/100;
+		Deposite(interest);
+	}
+}
+
+class FDaccount extends bankingOption{
+	void intrestRate(){
+		Double interest = this.Balance *1/12*12.5*1/100;
+		Deposite(interest);
+	}
+}
+
+
+
+
+
+
+
+
